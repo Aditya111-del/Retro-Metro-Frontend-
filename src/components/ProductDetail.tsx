@@ -134,7 +134,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
               }}>
                 {product.category}
               </div>
-              <h2 style={{ 
+              <h2 className="mobile-modal-title" style={{ 
                 fontSize: '28px', 
                 fontWeight: 500, 
                 letterSpacing: '1px',
@@ -144,7 +144,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
               }}>
                 {product.name}
               </h2>
-              <div style={{ 
+              <div className="mobile-modal-price" style={{ 
                 fontSize: '20px', 
                 fontWeight: 400,
                 marginBottom: '16px'
@@ -159,7 +159,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                 marginBottom: '16px'
               }} />
 
-              <p style={{
+              <p className="mobile-modal-desc" style={{
                 fontSize: '15px',
                 lineHeight: 1.6,
                 color: '#a0a0a0',
@@ -171,7 +171,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
 
               {/* Size Selector */}
               {product.sizes && product.sizes.length > 0 && (
-                <div style={{ marginBottom: '24px' }}>
+                <div className="mobile-modal-size-selector" style={{ marginBottom: '24px' }}>
                   <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '1px', marginBottom: '12px' }}>
                     SELECT SIZE
                   </div>
@@ -199,6 +199,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
 
               <div style={{ display: 'flex', gap: '16px' }}>
                 <button 
+                  className="mobile-modal-btn"
                   onClick={handleAddToCart}
                   disabled={!selectedSize}
                   style={{
@@ -221,7 +222,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                 >
                   ADD TO CART
                 </button>
-                <button style={{
+                <button className="mobile-modal-btn" style={{
                   flex: 1,
                   backgroundColor: 'var(--button-light-bg)',
                   color: 'var(--button-light-text)',
