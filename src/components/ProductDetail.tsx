@@ -33,7 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
       top: 0,
       left: 0,
       width: '100%',
-      height: '100%',
+      height: '100dvh',
       zIndex: 50,
       display: 'block'
     }}>
