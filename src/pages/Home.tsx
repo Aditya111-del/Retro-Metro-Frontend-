@@ -27,7 +27,8 @@ const Home: React.FC = () => {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        overflow: 'hidden',
+        overflowY: 'auto',
+        overflowX: 'hidden',
         position: 'relative'
       }}>
         <Carousel>

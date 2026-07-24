@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { X, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Product } from '../data/products';
 import { useCart } from '../context/CartContext';
 
@@ -11,6 +11,7 @@ interface ProductDetailProps {
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isDetailsHidden, setIsDetailsHidden] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
       />
 
       <div 
-        className="mobile-modal-layout"
+        className={`mobile-modal-layout ${isDetailsHidden ? 'details-hidden' : ''}`}
         style={{
           position: 'absolute',
           top: 0,
@@ -68,7 +69,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
         }}
       >
         {/* Left half: Full height image with shared layoutId */}
-        <div className="mobile-modal-left" style={{ flex: 1, height: '100%', overflow: 'hidden', pointerEvents: 'auto' }}>
+        <div className="mobile-modal-left" style={{ flex: 1, height: '100%', overflow: 'hidden', pointerEvents: 'auto', position: 'relative' }}>
           <motion.img 
             layoutId={`product-image-${product.id}`}
             src={product.image} 
@@ -79,6 +80,38 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
               objectFit: 'cover'
             }}
           />
+          
+          <AnimatePresence>
+            {isDetailsHidden && (
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                onClick={() => setIsDetailsHidden(false)}
+                className="mobile-only"
+                style={{
+                  position: 'absolute',
+                  bottom: '40px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  backgroundColor: 'rgba(0,0,0,0.75)',
+                  color: 'white',
+                  padding: '12px 24px',
+                  borderRadius: '30px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  zIndex: 20
+                }}
+              >
+                VIEW DETAILS <ChevronUp size={18} />
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Right half: Details */}
@@ -98,6 +131,27 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
             pointerEvents: 'auto'
           }}
         >
+          {/* Hide details button */}
+          <button 
+            className="mobile-only"
+            onClick={() => setIsDetailsHidden(true)}
+            style={{
+              position: 'absolute',
+              top: '24px',
+              left: '24px',
+              padding: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10,
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              borderRadius: '50%',
+              transition: 'background-color 0.2s'
+            }}
+          >
+            <ChevronDown size={24} />
+          </button>
+
           {/* Close button */}
           <button 
             onClick={onClose}
