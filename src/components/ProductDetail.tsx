@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import type { Product } from '../data/products';
 import { useCart } from '../context/CartContext';
 
@@ -13,6 +14,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isDetailsHidden, setIsDetailsHidden] = useState(false);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (product) {
@@ -25,6 +27,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
   const handleAddToCart = () => {
     if (product && selectedSize) {
       addToCart(product, selectedSize);
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (product && selectedSize) {
+      addToCart(product, selectedSize);
+      onClose();
+      navigate('/checkout');
     }
   };
 
@@ -276,22 +286,28 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                 >
                   ADD TO CART
                 </button>
-                <button className="mobile-modal-btn" style={{
-                  flex: 1,
-                  backgroundColor: 'var(--button-light-bg)',
-                  color: 'var(--button-light-text)',
-                  padding: '16px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  letterSpacing: '1px',
-                  transition: 'opacity 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = '0.9';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = '1';
-                }}
+                <button 
+                  className="mobile-modal-btn" 
+                  onClick={handleBuyNow}
+                  disabled={!selectedSize}
+                  style={{
+                    flex: 1,
+                    backgroundColor: 'var(--button-light-bg)',
+                    color: 'var(--button-light-text)',
+                    padding: '16px',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    letterSpacing: '1px',
+                    transition: 'opacity 0.2s ease',
+                    opacity: selectedSize ? 1 : 0.5,
+                    cursor: selectedSize ? 'pointer' : 'not-allowed',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (selectedSize) e.currentTarget.style.opacity = '0.9';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (selectedSize) e.currentTarget.style.opacity = '1';
+                  }}
                 >
                   BUY NOW
                 </button>

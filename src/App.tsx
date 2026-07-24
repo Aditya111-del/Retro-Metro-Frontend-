@@ -59,11 +59,7 @@ const App: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100vh',
-            }}
+            className="app-container"
           >
             <Navigation />
             

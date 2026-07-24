@@ -27,8 +27,7 @@ const Home: React.FC = () => {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        overflowY: 'auto',
-        overflowX: 'hidden',
+        overflow: 'hidden',
         position: 'relative'
       }}>
         <Carousel>
@@ -42,7 +41,7 @@ const Home: React.FC = () => {
         </Carousel>
 
         {/* Footer Link */}
-        <div style={{
+        <div className="mobile-footer-padding" style={{
           padding: '32px',
           display: 'flex',
           justifyContent: 'center',

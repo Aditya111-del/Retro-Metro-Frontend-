@@ -99,6 +99,10 @@ button {
   }
   .mobile-product-card {
     max-width: 85vw !important;
+    height: 55dvh !important;
+  }
+  .mobile-footer-padding {
+    padding: 16px !important;
   }
   .mobile-modal-layout {
     flex-direction: column !important;
@@ -144,6 +148,12 @@ button {
   .desktop-only {
     display: none !important;
   }
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+  }
   body {
     background-size: cover;
     background-position: center;
@@ -155,6 +165,11 @@ button {
 @media (min-width: 769px) {
   .mobile-only {
     display: none !important;
+  }
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
   body {
     background-size: cover;
