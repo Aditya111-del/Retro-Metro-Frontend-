@@ -147,7 +147,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
               <div style={{ 
                 fontSize: '20px', 
                 fontWeight: 400,
-                marginBottom: '40px'
+                marginBottom: '16px'
               }}>
                 ${product.price.toFixed(2)}
               </div>
@@ -156,14 +156,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                 width: '100%',
                 height: '1px',
                 backgroundColor: 'var(--border-color)',
-                marginBottom: '32px'
+                marginBottom: '16px'
               }} />
 
               <p style={{
                 fontSize: '15px',
                 lineHeight: 1.6,
                 color: '#a0a0a0',
-                marginBottom: '40px',
+                marginBottom: '16px',
                 fontWeight: 300
               }}>
                 {product.description}
@@ -171,7 +171,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
 
               {/* Size Selector */}
               {product.sizes && product.sizes.length > 0 && (
-                <div style={{ marginBottom: '40px' }}>
+                <div style={{ marginBottom: '24px' }}>
                   <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '1px', marginBottom: '12px' }}>
                     SELECT SIZE
                   </div>
